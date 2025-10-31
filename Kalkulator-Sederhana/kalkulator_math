@@ -1,0 +1,93 @@
+import math
+
+def hitung():
+    print("\nPilih Operasi")
+    print("1. Tambah (+)")
+    print("2. Kurang (-)")
+    print("3. Kali (*)")
+    print("4. Bagi (/)")
+    print("--- Fungsi Lanjut (Satu Angka) ---")
+    print("6. Akar Kuadrat (sqrt)")
+    print("7. Pangkat (x**y)")
+    print("8. Logaritma (log)")
+    print("9. Sinus (sin)")
+    print("0. Keluar (x)")
+
+    pilihan = input("masukan pilihan atau operator: ")
+
+    if pilihan == '0' or pilihan.lower() == 'x':
+        return False
+    
+    if pilihan in ['1', '2', '3', '4', '+', '-', '*', '/' ]:
+        try:   
+            angka1 = float(input("Masukan angka pertama: "))
+            angka2 = float(input("Masukan angka kedua: "))
+        except ValueError:
+            print("Input tidak valid! Harap masukan angka!")
+            return True
+        
+        operator_map = {'1': '+', '2': '-', '3': '*', '4': '/', '+': '+', '-': '-', '*': '*', '/': '/'}
+        operator = operator_map.get(pilihan, pilihan)
+
+        if operator == '+':
+            hasil = angka1 + angka2
+        elif operator == '-':
+            hasil = angka1 - angka2
+        elif operator == '*':
+            hasil = angka1 * angka2
+        elif operator == '/':
+            if angka2 != 0:
+                hasil = angka1 / angka2
+            else:
+                print("Error: Tidak bisa dibagi nol.")
+                return True
+        
+        print(f"\nHasil dari {angka1} {operator} {angka2} adalah: **{hasil}**")
+
+        # --- Operasi Satu Angka (Fungsi Lanjut) ---
+    elif pilihan in ['6', '7', '8', '9']:
+        try:
+            angka = float(input("Masukkan angka: "))
+        except ValueError:
+            print("Input tidak valid. Harap masukkan angka.")
+            return True
+
+        if pilihan == '6': # Akar Kuadrat (sqrt)
+            if angka >= 0:
+                hasil = math.sqrt(angka)
+                print(f"\nAkar Kuadrat dari {angka} adalah: **{hasil}**")
+            else:
+                print("Error: Tidak bisa mencari akar kuadrat dari bilangan negatif.")
+        
+        elif pilihan == '7': # Pangkat (x**y)
+            try:
+                pangkat = float(input("Masukkan pangkat (y): "))
+                hasil = angka ** pangkat
+                print(f"\nHasil dari {angka} pangkat {pangkat} adalah: **{hasil}**")
+            except ValueError:
+                print("Input pangkat tidak valid.")
+        
+        elif pilihan == '8': # Logaritma (log)
+            if angka > 0:
+                hasil = math.log(angka)
+                print(f"\nLogaritma natural (ln) dari {angka} adalah: **{hasil}**")
+            else:
+                print("Error: Logaritma hanya berlaku untuk angka positif.")
+        
+        elif pilihan == '9': # Sinus (sin)
+            hasil = math.sin(angka)
+            print(f"\nSinus dari {angka} adalah: **{hasil}**")
+
+    else:
+        print("Pilihan tidak valid.")
+
+    return True
+
+# --- Main Program ---
+berjalan = True
+print("Selamat datang di Kalkulator Ilmiah Sederhana!")
+while berjalan:
+    berjalan = hitung() 
+
+print("Terima kasih, kalkulator dimatikan.")
+
