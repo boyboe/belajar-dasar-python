@@ -111,6 +111,6 @@ def menu_utama(df):
 # =========================================================================
 # PANGGILAN PROGRAM UTAMA
 # =========================================================================
-data_kontak = muat_data() # Pastikan ini di level teratas
+data_kontak = muat_data() 
 if __name__ == "__main__":
     menu_utama(data_kontak)
